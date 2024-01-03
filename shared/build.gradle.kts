@@ -31,14 +31,17 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.negotiation)
             implementation(libs.ktor.client.serialization)
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.koin.test)
         }
         androidMain.dependencies {
             implementation(libs.ktor.android)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.serialization)
+            implementation(libs.koin.android)
         }
     }
 }

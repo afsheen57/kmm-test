@@ -10,13 +10,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kmmtest.Greeting
 import com.example.kmmtest.UseCasePokemon
+import com.example.kmmtest.di.commonModule
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class MainActivity : ComponentActivity() {
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        startKoin {
+            androidContext(this@MainActivity)
+            modules(commonModule)
+        }
+
         GlobalScope.launch(Dispatchers.Main) {
             // Process the result as needed
             val result = UseCasePokemon().loadData()
